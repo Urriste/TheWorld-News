@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "build",
+    "site": "theworld-news",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
