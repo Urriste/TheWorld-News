@@ -10,7 +10,12 @@ function NewsCard(props) {
         <p className="card-paragraph">{props.description}</p>
         <h4 className="card-info">
           Leé más en
-          <a href={props.url} target="_blank" className="card-url">
+          <a
+            rel="noreferrer"
+            href={props.url}
+            target="_blank"
+            className="card-url"
+          >
             {" "}
             {props.author}
           </a>
