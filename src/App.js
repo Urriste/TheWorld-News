@@ -1,10 +1,39 @@
 import "./App.css";
 import NewsCard from "./components/news-card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import WorldImg from "./img/TheWorldNews.png";
 
 function App() {
   const [data, setData] = useState();
+  const [countries, setCountries] = useState([
+    { name: "Australia", key: "au" },
+    { name: "Alemania", key: "de" },
+    { name: "Brasil", key: "br" },
+    { name: "Canadá", key: "ca" },
+    { name: "China", key: "cn" },
+    { name: "Egipto", key: "eg" },
+    { name: "Estados Unidos", key: "us" },
+    { name: "Francia", key: "fr" },
+    { name: "Filipinas", key: "ph" },
+    { name: "Grecia", key: "gr" },
+    { name: "Hong Kong", key: "hk" },
+    { name: "Irlanda", key: "ie" },
+    { name: "India", key: "in" },
+    { name: "Italia", key: "it" },
+    { name: "Japón", key: "jp" },
+    { name: "Noruega", key: "no" },
+    { name: "Perú", key: "pe" },
+    { name: "Paises Bajos", key: "nl" },
+    { name: "Pakistán", key: "pk" },
+    { name: "Portugal", key: "pt" },
+    { name: "Rumania", key: "ro" },
+    { name: "Rusia", key: "ru" },
+    { name: "Reino Unido", key: "gb" },
+    { name: "Suiza", key: "ch" },
+    { name: "Suecia", key: "se" },
+    { name: "Taiwan", key: "tw" },
+    { name: "Ucrania", key: "ua" },
+  ]);
 
   const getApi = async (country) => {
     const data = await fetch(
@@ -27,93 +56,18 @@ function App() {
         <h2 className="subtitle">
           El sitio de noticias del <span className="mercosur">Mundo</span>{" "}
         </h2>
-        <select className="selector" id="select">
-          <option className="option" value="au">
-            Austria
+        <select className="selector" id="select" onChange={procesarData}>
+          <option className="option" disabled>
+            Elige un país para ver sus noticias
           </option>
-          <option className="option" value="de">
-            Alemania
-          </option>
-          <option className="option" value="br">
-            Brasil
-          </option>
-          <option className="option" value="ca">
-            Canadá
-          </option>
-          <option className="option" value="cn">
-            China
-          </option>
-          <option className="option" value="eg">
-            Egipto
-          </option>
-          <option className="option" value="us">
-            Estados Unidos
-          </option>
-          <option className="option" value="fr">
-            Francia
-          </option>
-          <option className="option" value="ph">
-            Filipinas
-          </option>
-          <option className="option" value="gr">
-            Grecia
-          </option>
-          <option className="option" value="hk">
-            Hong Kong
-          </option>
-          <option className="option" value="ie">
-            Irlanda
-          </option>
-          <option className="option" value="in">
-            India
-          </option>
-          <option className="option" value="it">
-            Italia
-          </option>
-          <option className="option" value="jp">
-            Japón
-          </option>
-          <option className="option" value="no">
-            Noruega
-          </option>
-          <option className="option" value="pe">
-            Perú
-          </option>{" "}
-          <option className="option" value="nl">
-            Paises Bajos
-          </option>
-          <option className="option" value="pk">
-            Pakistan
-          </option>
-          <option className="option" value="pt">
-            Portugal
-          </option>
-          <option className="option" value="ro">
-            Rumania
-          </option>
-          <option className="option" value="ru">
-            Rusia
-          </option>
-          <option className="option" value="gb">
-            Reino Unido
-          </option>
-          <option className="option" value="ch">
-            Suiza
-          </option>
-          <option className="option" value="se">
-            Suecia
-          </option>
-          <option className="option" value="tw">
-            Taiwan
-          </option>
-          <option className="option" value="ua">
-            Ucrania
-          </option>
+          {countries.map((item, index) => {
+            return (
+              <option className="option" key={index} value={item.key}>
+                {item.name}
+              </option>
+            );
+          })}
         </select>
-
-        <button className="button" onClick={procesarData}>
-          Mostrar
-        </button>
       </div>
 
       <div className="news-container">
